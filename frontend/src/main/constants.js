@@ -1,3 +1,3 @@
 export default {
-    animation:0.2
+    animation:0.5
 }

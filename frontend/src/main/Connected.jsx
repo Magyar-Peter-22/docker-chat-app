@@ -104,13 +104,15 @@ export default () => {
                                 <FadeoutLoading key="loading" text="connecting" />
                             ) : (
                                 //when everything is done, show the main page
-                                <BrowserRouter key="loaded">
-                                    <RoomProvider initialRooms={rooms}>
-                                        <ModalProvider>
-                                            <Main />
-                                        </ModalProvider>
-                                    </RoomProvider>
-                                </BrowserRouter >
+                                <Transition key="loaded">
+                                    <BrowserRouter>
+                                        <RoomProvider initialRooms={rooms}>
+                                            <ModalProvider>
+                                                <Main />
+                                            </ModalProvider>
+                                        </RoomProvider>
+                                    </BrowserRouter >
+                                </Transition>
                             )
                         }
                     </AnimatePresence >
@@ -119,7 +121,6 @@ export default () => {
         </UserContext.Provider >
     );
 }
-export { SocketContext, UserContext };
 
 function FadeoutLoading({ text }) {
     const { t } = useTranslation("main");
@@ -138,3 +139,5 @@ function FadeoutLoading({ text }) {
         </motion.div>
     );
 }
+
+export { SocketContext, UserContext, LogoutContext };

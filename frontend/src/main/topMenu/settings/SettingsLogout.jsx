@@ -5,15 +5,15 @@ import ListItemText from '@mui/material/ListItemText';
 import { useCallback, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import instance from '../../auth/instance';
-import { SocketContext } from '../../Connected';
+import { LogoutContext } from '../../Connected';
 
 export default () => {
     const { t } = useTranslation("main");
-    const socket = useContext(SocketContext);
+    const logout = useContext(LogoutContext);
 
     const handleLogout = useCallback(async () => {
         await instance.get("/auth/logout");
-        socket.disconnect();
+        logout();
     }, []);
 
     return (

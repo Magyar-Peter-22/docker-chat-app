@@ -53,7 +53,6 @@ export default () => {
                         placeholder={t("username")}
                         fullWidth
                         autoComplete='username'
-                        multiline
                         variant="standard"
                         autoFocus={true}
                         {...register("username")}
@@ -69,8 +68,6 @@ export default () => {
                         }}
                         placeholder={t("password")}
                         fullWidth
-                        autoComplete='password'
-                        multiline
                         variant="standard"
                         {...register("password")}
                     />
