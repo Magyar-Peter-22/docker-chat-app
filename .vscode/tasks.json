@@ -1,0 +1,42 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "open terminals",
+			"dependsOn": [
+				"open backend",
+				"open frontend",
+			],
+			// Try start the task on folder open
+			"runOptions": {
+				"runOn": "folderOpen"
+			},
+		},
+		{
+			"label": "open frontend",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-c",
+				"cd frontend && exec bash"
+			],
+			"problemMatcher": [],
+			"presentation": {
+                "reveal": "always",
+            },
+		},
+		{
+			"label": "open backend",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-c",
+				"cd backend && exec bash"
+			],
+			"problemMatcher": [],
+			"presentation": {
+                "reveal": "always",
+            },
+		},
+	]
+}

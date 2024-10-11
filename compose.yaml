@@ -1,0 +1,59 @@
+services:
+
+  backend:
+    container_name: chat-app-backend
+    build:
+      context: ./backend
+    command: npm run dev
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+    env_file: ./backend/.env
+    networks:
+      - node-network
+    tty: true
+    develop:
+      watch:
+        - action: sync
+          path: ./backend
+          target: /app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./package.json
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    container_name: chat-app-frontend
+    build:
+      context: ./frontend
+    environment:
+      NODE_ENV: development
+    ports:
+      - 5173:5173
+    restart: always
+    command: npm run dev
+    networks:
+      - node-network
+    env_file: ./frontend/.env
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: chat-app-nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d/
+    networks:
+      - node-network
+
+networks:
+  node-network:
+    driver: bridge
