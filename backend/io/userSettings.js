@@ -27,16 +27,15 @@ export default (socket, io) => {
 
             //apply to session
             setUser(socket, newUser);
-            await socket.request.session.save();
-
-            //send the new user to client
-            callback(undefined, newUser);
 
             //notify the users about the change
             io.emit("update user", id, newUser);
+
+            //send the new user to client
+            callback(undefined, newUser);
         }
         catch (err) {
-            errorHandler(callback,err);
+            errorHandler(callback, err);
         }
     });
 }

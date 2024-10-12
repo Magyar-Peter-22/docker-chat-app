@@ -5,7 +5,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { lazy,useContext } from "react";
 import { useTranslation } from 'react-i18next';
 import { ModalContext } from '../../Modals';
-const ChangeUsername = lazy(() => import('../ChangeLanguage'));
+const ChangeUsername = lazy(() => import('../ChangeUsername'));
 
 export default () => {
     const { Show } = useContext(ModalContext);
