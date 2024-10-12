@@ -6,11 +6,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { enqueueSnackbar } from 'notistack';
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from 'react-i18next';
+import UsernameInput from '../auth/UsernameInput';
 import { UserContext } from "../Connected";
 import { ModalContext } from '../Modals';
 import useSocketMutation from '../useSocketMutation';
-import CleanInput from './CleanInput';
-import { useTranslation } from 'react-i18next';
 
 export default () => {
     const { Close } = useContext(ModalContext);
@@ -38,15 +38,11 @@ export default () => {
                 <DialogContentText>
                     {t("description")}
                 </DialogContentText>
-                <CleanInput
+                <UsernameInput
                     fieldProps={{
-                        autoComplete: 'username',
-                        inputProps: { maxLength: 30 },
                         fullWidth: true,
-                        variant: "standard",
                         label: t("label"),
                         autoFocus: true,
-                        margin: "dense"
                     }}
                     controlProps={{
                         name: "username",

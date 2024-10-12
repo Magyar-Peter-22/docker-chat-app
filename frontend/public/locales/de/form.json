@@ -1,6 +1,7 @@
 {
-    "cancel": "stornieren",
-    "create": "erstellen",
-    "delete": "löschen",
-    "change": "ändern"
-  }
+  "cancel": "stornieren",
+  "create": "erstellen",
+  "delete": "löschen",
+  "change": "ändern",
+  "minLength": "Der {{field}} Feld ist zu kurz"
+}

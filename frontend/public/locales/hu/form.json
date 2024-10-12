@@ -1,6 +1,7 @@
 {
-    "cancel": "mégse",
-    "create": "létrehozás",
-    "delete": "törlés",
-    "change": "változtatás"
-  }
+  "cancel": "mégse",
+  "create": "létrehozás",
+  "delete": "törlés",
+  "change": "változtatás",
+  "minLength": "A {{field}} a mező túl rövid"
+}

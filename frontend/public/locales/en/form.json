@@ -2,5 +2,6 @@
     "cancel":"cancel",
     "create":"create",
     "delete":"delete",
-    "change":"change"
+    "change":"change",
+    "minLength": "The {{field}} field is too short"
 }
