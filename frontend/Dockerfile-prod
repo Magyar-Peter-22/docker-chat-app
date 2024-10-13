@@ -1,14 +1,21 @@
 ARG NODE_VERSION=20.11.0
 
-FROM node:${NODE_VERSION}-alpine
+FROM node:${NODE_VERSION}-alpine as build-stage
  
 WORKDIR /app
 
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=package-lock.json,target=package-lock.json \
     --mount=type=cache,target=/root/.npm \
-    npm ci --omit=dev
+    npm ci
 
 COPY . .
 
-CMD npm run preview
+RUN npm run build
+
+FROM busybox:1.35
+RUN adduser -D static
+USER static
+WORKDIR /home/static
+COPY --from=build-stage /app/dist .
+CMD ["busybox", "httpd", "-f", "-v", "-p", "5173"]
