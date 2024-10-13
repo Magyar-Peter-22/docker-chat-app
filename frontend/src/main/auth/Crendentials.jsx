@@ -38,7 +38,6 @@ export default () => {
         const [field, props] = firstError;
         return (t(props.type, { field: t(field), ns: "form" }));
     }, [firstError]);
-    console.log(firstError);
 
     //after successful login or register, attempt to reconnect
     const onLogin = useCallback(

@@ -14,5 +14,8 @@ export default defineConfig({
     hmr: {
       clientPort: 5173//fix error message,
     },
-  }
+  },
+  preview: {
+    port: 5173,
+  },
 })
