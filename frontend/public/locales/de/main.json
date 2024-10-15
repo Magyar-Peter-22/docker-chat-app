@@ -12,7 +12,8 @@
   "loading messages": "Nachrichten werden geladen",
   "no messages yet": "Noch keine Nachrichten",
   "home": "Heim",
-  "drop_files":"Hochladen",
+  "drop_files": "Hochladen",
+  "logout": "Ausloggen",
   "messages": {
     "this room deleted": "Dieser Raum wurde gelöscht"
   }

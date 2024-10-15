@@ -12,7 +12,8 @@
   "loading messages": "Üzenetek betöltése",
   "no messages yet": "Még nincsenek üzenetek",
   "home": "Kezdőlap",
-  "drop_files":"Feltöltés",
+  "drop_files": "Feltöltés",
+  "logout": "Kijelentkezés",
   "messages": {
     "this room deleted": "Ezt a szobát törölték"
   }

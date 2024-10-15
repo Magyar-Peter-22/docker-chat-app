@@ -12,7 +12,8 @@
   "loading messages": "Loading messages",
   "no messages yet": "No messages yet",
   "home": "Home",
-  "drop_files":"Drop to upload",
+  "drop_files": "Drop to upload",
+  "logout": "Logout",
   "messages": {
     "this room deleted": "This room has been deleted"
   }

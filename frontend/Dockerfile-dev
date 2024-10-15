@@ -1,7 +1,9 @@
 ARG NODE_VERSION=20.11.0
 
 FROM node:${NODE_VERSION}-alpine
- 
+
+ENV NODE_ENV=development
+
 WORKDIR /app
 
 RUN --mount=type=bind,source=package.json,target=package.json \
