@@ -1,7 +1,8 @@
+#BUILD
 ARG NODE_VERSION=20.11.0
 
-FROM node:${NODE_VERSION}-alpine as build-stage
- 
+FROM node:${NODE_VERSION}-alpine AS build-stage
+
 WORKDIR /app
 
 RUN --mount=type=bind,source=package.json,target=package.json \
@@ -10,12 +11,14 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     npm ci
 
 COPY . .
+COPY .env .
 
 RUN npm run build
 
-FROM busybox:1.35
-RUN adduser -D static
-USER static
-WORKDIR /home/static
-COPY --from=build-stage /app/dist .
-CMD ["busybox", "httpd", "-f", "-v", "-p", "5173"]
+#SERVE
+
+FROM nginx:stable-alpine
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 5173
+CMD ["nginx", "-g", "daemon off;"]
