@@ -5,11 +5,11 @@ const RoomSchema = new Schema({
     userId: {type:mongoose.ObjectId,required:true},
     name: {type:String,required:true},
     timestamp: { type: Number, default: Date.now ,required:true},
-    deleted: {type:Boolean}
+    deleted: {type:Boolean,required:true,default:false}
 });
 
 const validRoom = {
-    deleted: null
+    deleted: false
 }
 
 const Room = model("rooms", RoomSchema);

@@ -1,0 +1,8 @@
+version: 3
+agent:
+  authtoken: AUTH TOKEN
+tunnels:
+  default:
+    proto: http
+    addr: http://host.docker.internal:80
+    domain: awake-rapid-tortoise.ngrok-free.app

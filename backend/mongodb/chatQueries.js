@@ -8,7 +8,7 @@ const MessageSchema = new Schema({
     text: {type:String,required:true},
     timestamp: { type: Number, default: Date.now,required:true },
     room: {type:mongoose.ObjectId,required:true},
-    pending: Boolean,
+    pending: {type:Boolean,required:true,default:false},
     media: Array
 });
 
@@ -52,7 +52,7 @@ async function getMessages(offset, startTime, limit, room) {
                     $lte: startTime,
                 },
                 room: room,
-                pending: null
+                pending: false
             }
         },
         ...addUser,

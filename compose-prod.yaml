@@ -41,17 +41,20 @@ services:
   ngrok:
     container_name: chat-app-ngrok
     image: ngrok/ngrok:latest
-    command:
-      - "http"
-      - "http://host.docker.internal:80"
-      - "--log"
-      - "stdout"
-      - "--url"
-      - "awake-rapid-tortoise.ngrok-free.app"
-    environment:
-      NGROK_AUTHTOKEN: 2nS2ZSGbn6ixoAHdiMh61WSjYVf_ZFyHqNbimdZrPEwe927N
+    restart: unless-stopped
+    volumes:
+      - ./ngrok/ngrok.yaml:/ngrok.yaml
     ports:
       - 4040:4040
+    command:
+      - "start"
+      - "default"
+      - "--config"
+      - "/ngrok.yaml"
+      - "--log"
+      - "stdout"
+    networks:
+      - node-network
 
 networks:
   node-network:
