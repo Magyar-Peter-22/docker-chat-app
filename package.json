@@ -1,0 +1,12 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compose_prod": "docker compose -f compose-prod.yaml up --build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

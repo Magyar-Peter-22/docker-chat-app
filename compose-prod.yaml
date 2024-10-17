@@ -28,8 +28,8 @@ services:
     env_file: ./frontend/.env
 
   nginx:
-    image: nginx:stable-alpine
     container_name: chat-app-nginx
+    image: nginx:stable-alpine
     build:
       context: ./nginx
     restart: always
@@ -37,6 +37,21 @@ services:
       - "80:80"
     networks:
       - node-network
+
+  ngrok:
+    container_name: chat-app-ngrok
+    image: ngrok/ngrok:latest
+    command:
+      - "http"
+      - "http://host.docker.internal:80"
+      - "--log"
+      - "stdout"
+      - "--url"
+      - "awake-rapid-tortoise.ngrok-free.app"
+    environment:
+      NGROK_AUTHTOKEN: 2nS2ZSGbn6ixoAHdiMh61WSjYVf_ZFyHqNbimdZrPEwe927N
+    ports:
+      - 4040:4040
 
 networks:
   node-network:
