@@ -7,7 +7,7 @@
         },
         "simple": {
             "title": "Egyszerű",
-            "desc": "A regisztráció teljesen automatizált."
+            "desc": "Nem igényel érvényes email címet."
         },
         "multilingular": {
             "title": "Többnyelvű",

@@ -7,7 +7,7 @@
         },
         "simple": {
             "title": "Simple",
-            "desc": "The registration is fully automated."
+            "desc": "Valid email address is not required."
         },
         "multilingular": {
             "title": "Multilungular",
