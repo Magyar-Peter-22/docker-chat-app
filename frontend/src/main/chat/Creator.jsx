@@ -84,7 +84,7 @@ export default memo(() => {
                                 'Content-Type': 'multipart/form-data'
                             },
                             onUploadProgress: (e) => {
-                                fileDisplayerRef.current.updateProgress(i, e.progress * 100);
+                                fileDisplayerRef.current.updateProgress(i, e.progress*100);
                             }
                         });
 
@@ -138,12 +138,14 @@ export default memo(() => {
 
         //info about the files to generate signatures
         const fileData = files.map((file) => {
-            const type = getResourceType(file.type);
             return {
                 name: file.name,
-                type
+                mimeType:file.type
             }
         });
+
+        console.log("\nuploading file infos:");
+        console.log(fileData);
 
         await sendMessage.mutateAsync({ text, fileData });
     });
@@ -222,11 +224,3 @@ export default memo(() => {
         </FormProvider>
     );
 });
-
-function getResourceType(mimeType) {
-    if (mimeType.startsWith("image"))
-        return "image";
-    if (mimeType.startsWith("video"))
-        return "video";
-    return "raw";
-}

@@ -51,7 +51,7 @@ export default (socket, io) => {
                     fileData: "array",
                     "fileData.*": "required|object",
                     "fileData.*.name": "required|string",
-                    "fileData.*.type": "required|string"
+                    "fileData.*.mimeType": "required|string"
                 },
             );
             let { text, fileData } = data;
@@ -80,7 +80,7 @@ export default (socket, io) => {
 
                 //get signatures
                 const signaturesDatas = await Promise.all(fileData.map(async (fileInfo, i) => {
-                    const signatureData = await createChatSignature(roomId.toString(), created._id.toString(), i, fileInfo.type);
+                    const signatureData = await createChatSignature(roomId.toString(), created._id.toString(), i, fileInfo.mimeType);
                     return signatureData;
                 }))
 

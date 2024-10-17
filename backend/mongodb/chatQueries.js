@@ -82,7 +82,7 @@ async function finalizeMessage(messageId, files, user) {
     const result = await Message.findByIdAndUpdate(messageId,
         {
             $set: {
-                pending: null,
+                pending: false,
                 media: files
             }
         },

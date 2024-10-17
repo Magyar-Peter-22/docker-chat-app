@@ -25,10 +25,9 @@ async function createSignature(options) {
 }
 
 //create siganture for a chat media
-async function createChatSignature(roomId, messageId, imageId,type) {
-    console.log(type);
+async function createChatSignature(roomId, messageId, imageId, mimeType) {
     const options = {
-        upload_preset: uploadPresets[type],
+        upload_preset: getUploadPreset(mimeType),
         public_id: imageId,
         folder: `/chat-app/${roomId}/${messageId}`,
     }
@@ -38,10 +37,16 @@ async function createChatSignature(roomId, messageId, imageId,type) {
     return signature;
 }
 
-const uploadPresets={
-    "image":"message_image",
-    "video":"message_video",
-    "raw":"message_raw"
+//select upload preset based on mimetype
+function getUploadPreset(mimeType) {
+    //the gif needs a separate preset because the images are converted to avif, and the gif will not play when resized in avif format
+    if (mimeType === "image/gif")
+        return "message_gif";
+    if (mimeType.startsWith("image"))
+        return "message_image";
+    if (mimeType.startsWith("video"))
+        return "message_video";
+    return "message_raw";
 }
 
 export { createChatSignature };
