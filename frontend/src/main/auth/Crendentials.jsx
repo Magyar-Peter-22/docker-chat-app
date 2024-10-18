@@ -57,7 +57,7 @@ export default () => {
     );
 
     return (
-        <Stack sx={{ width: "100%", height: "100vh", justifyContent: "center", alignItems: "center" }} bgcolor="grey.A200">
+        <Stack sx={{ width: "100%", height: "100dvh", justifyContent: "center", alignItems: "center" }} bgcolor="grey.A200">
             <ResponsiveContainer>
                 <Box component="main" sx={{ width: "100%" }}>
                     <Stack spacing={2} sx={{ p: 5 }}>

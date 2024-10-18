@@ -139,72 +139,70 @@ const Chat = forwardRef(({ sx, room, ...props }, ref) => {
     return (
         <Box sx={{ position: "relative", height: "100%", ...sx }} {...props}>
             {
-                allRows.length === 0 ? (
-                    <ListMessage key="message">{t("no messages yet")}</ListMessage>
-                ) : (
-                    <AnimatePresence>
-                        {
-                            status === 'pending' ? (
-                                <FadeoutLoading key="message" />
-                            ) : status === 'error' ? (
-                                <ListMessage key="message">Error: {error.toString()}</ListMessage>
-                            ) : (
-                                <Box
-                                    key="loaded"
-                                    ref={parentRef}
-                                    sx={{
-                                        overflowY: "scroll",
-                                        height: "100%",
-                                        contain: 'strict',
-                                        boxSizing: "border-box",
-                                        px: 2,
-                                        position: "relative",
+                <AnimatePresence>
+                    {
+                        status === 'pending' ? (
+                            <FadeoutLoading key="message" />
+                        ) : status === 'error' ? (
+                            <ListMessage key="message">Error: {error.toString()}</ListMessage>
+                        ) : allRows.length === 0 ? (
+                            <ListMessage key="message">{t("no messages yet")}</ListMessage>
+                        ) : (
+                            <Box
+                                key="loaded"
+                                ref={parentRef}
+                                sx={{
+                                    overflowY: "scroll",
+                                    height: "100%",
+                                    contain: 'strict',
+                                    boxSizing: "border-box",
+                                    px: 2,
+                                    position: "relative",
+                                }}
+                            >
+                                {/*indicate loading on the top*/}
+                                {
+                                    //deleted because it's visible for a moment after the loading is done and the rows are rendered, causing a small movement when switching between rooms
+                                    //{isFetchingPreviousPage &&
+                                    //    <ListMessage>
+                                    //        Loading more...
+                                    //    </ListMessage>
+                                    //}
+                                }
+
+                                {/*the visible rows*/}
+                                <div
+                                    style={{
+                                        height: `${virtualizer.getTotalSize()}px`,
+                                        width: '100%',
+                                        position: 'relative',
                                     }}
                                 >
-                                    {/*indicate loading on the top*/}
                                     {
-                                        //deleted because it's visible for a moment after the loading is done and the rows are rendered, causing a small movement when switching between rooms
-                                        //{isFetchingPreviousPage &&
-                                        //    <ListMessage>
-                                        //        Loading more...
-                                        //    </ListMessage>
-                                        //}
+                                        items.map((virtualRow) => {
+                                            return (
+                                                <div
+                                                    key={virtualRow.key}
+                                                    data-index={virtualRow.index}
+                                                    ref={virtualizer.measureElement}
+                                                    style={{
+                                                        position: 'absolute',
+                                                        top: 0,
+                                                        left: 0,
+                                                        width: '100%',
+                                                        transform: `translateY(${virtualRow.start - virtualizer.options.scrollMargin}px)`,
+                                                    }}
+                                                >
+                                                    <Message message={allRows[virtualRow.index]} />
+                                                </div>
+                                            )
+                                        })
                                     }
-
-                                    {/*the visible rows*/}
-                                    <div
-                                        style={{
-                                            height: `${virtualizer.getTotalSize()}px`,
-                                            width: '100%',
-                                            position: 'relative',
-                                        }}
-                                    >
-                                        {
-                                            items.map((virtualRow) => {
-                                                return (
-                                                    <div
-                                                        key={virtualRow.key}
-                                                        data-index={virtualRow.index}
-                                                        ref={virtualizer.measureElement}
-                                                        style={{
-                                                            position: 'absolute',
-                                                            top: 0,
-                                                            left: 0,
-                                                            width: '100%',
-                                                            transform: `translateY(${virtualRow.start - virtualizer.options.scrollMargin}px)`,
-                                                        }}
-                                                    >
-                                                        <Message message={allRows[virtualRow.index]} />
-                                                    </div>
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                </Box>
-                            )
-                        }
-                    </AnimatePresence >
-                )
+                                </div>
+                            </Box>
+                        )
+                    }
+                </AnimatePresence >
             }
         </Box>
     )

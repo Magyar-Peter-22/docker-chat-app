@@ -32,7 +32,7 @@ export default memo(forwardRef((_, ref) => {
         return;
 
     return (
-        <Box sx={{ position: "absolute", bottom: "100%", width: "100%", maxHeight: "50vh", overflowY: "auto", direction: "rtl", px: 1, boxSizing: "border-box" }}>
+        <Box sx={{ position: "absolute", bottom: "100%", width: "100%", maxHeight: "50dvh", overflowY: "auto", direction: "rtl", px: 1, boxSizing: "border-box" }}>
             <Stack direction="row" style={{ direction: "ltr", flexWrap: "wrap", gap: 10 }}>
                 {files.map((file, i) => <Preview file={file} progress={progress[i]} key={keyGen.getKey(file)} />)}
             </Stack>

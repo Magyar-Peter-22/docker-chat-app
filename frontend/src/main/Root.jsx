@@ -21,7 +21,7 @@ const queryClient = new QueryClient({
 export default () => {
     return (
         <ThemeProvider theme={theme}>
-            <Box bgcolor="grey.A200" sx={{width:"100%",height:"100vh"}}>
+            <Box bgcolor="grey.A200" sx={{width:"100%",height:"100dvh"}}>
                 < QueryClientProvider client={queryClient} >
                     <SnackbarProvider
                         maxSnack={3}

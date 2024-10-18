@@ -10,9 +10,9 @@ const Main = () => {
     const noSideMenu = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
-        <Stack direction="row" sx={{ maxHeight: "100vh" }}>
+        <Stack direction="row" sx={{ maxHeight: "100dvh" }}>
             {!noSideMenu && <SideMenuFixed sx={{ zIndex: 3, flexShrink: 0 }} />}
-            <Stack direction="column" sx={{ height: "100vh", flexGrow: 1 }}>
+            <Stack direction="column" sx={{ height: "100dvh", flexGrow: 1 }}>
                 <Topmenu sx={{ zIndex: 2 }} />
                 <Stack direction="column" sx={{ position: "relative", flexGrow: 1 }}>
                     <Router />

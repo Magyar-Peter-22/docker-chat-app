@@ -6,7 +6,7 @@ export default ({ text }) => {
     return (
         <Stack direction="column" spacing={1} sx={{
             width: "100%",
-            height: "100vh",
+            height: "100dvh",
             alignItems: "center",
             justifyContent: "center",
             backgroundColor: "#FFF",
